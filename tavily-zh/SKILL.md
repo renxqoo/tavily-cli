@@ -143,6 +143,5 @@ tavily research get <request_id> --json
 ## 注意事项
 
 - `--json` 是 agent 调用时必须使用的参数，确保输出为结构化 JSON
-- **stderr 噪音**：命令每次运行都会在 stderr 输出一行 Node TLS 警告（`NODE_TLS_REJECT_UNAUTHORIZED`），属正常噪音可忽略。保存/解析输出时**只用 stdout**：不要 `2>&1` 合并重定向到文件（警告会混进 JSON 导致解析失败），用 `> file` 或直接捕获 stdout
 - `advanced` 搜索/提取深度消耗 2 credits（其他模式 1 credit），成本敏感时用默认深度
 - 站点结构未知时优先 `map`（低成本发现），再对选中页面 `extract`，避免直接 `crawl` 的高成本

@@ -145,8 +145,6 @@ export const crawlCommands = defineCommands({
         }
       }
 
-      ctx.log.info(`爬取: ${args.url}`);
-
       const res = await ctx.post<CrawlResponse>("/crawl", {
         url: args.url,
         ...(args.instructions ? { instructions: args.instructions } : {}),

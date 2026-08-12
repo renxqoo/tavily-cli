@@ -147,8 +147,6 @@ export const researchCommands = defineCommands({
         });
       }
 
-      ctx.log.info(`创建研究任务: ${args.input}`);
-
       const created = await ctx.post<ResearchTask>("/research", {
         input: args.input,
         model: args.model,
