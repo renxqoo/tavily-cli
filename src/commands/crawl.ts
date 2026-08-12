@@ -154,15 +154,9 @@ export const crawlCommands = defineCommands({
         max_breadth: args.max_breadth,
         limit: args.limit,
         ...(args.select_paths?.length ? { select_paths: args.select_paths } : {}),
-        ...(args.select_domains?.length
-          ? { select_domains: args.select_domains }
-          : {}),
-        ...(args.exclude_paths?.length
-          ? { exclude_paths: args.exclude_paths }
-          : {}),
-        ...(args.exclude_domains?.length
-          ? { exclude_domains: args.exclude_domains }
-          : {}),
+        ...(args.select_domains?.length ? { select_domains: args.select_domains } : {}),
+        ...(args.exclude_paths?.length ? { exclude_paths: args.exclude_paths } : {}),
+        ...(args.exclude_domains?.length ? { exclude_domains: args.exclude_domains } : {}),
         allow_external: args.allow_external,
         include_images: args.include_images,
         extract_depth: args.extract_depth,
@@ -208,8 +202,7 @@ export const crawlCommands = defineCommands({
           { header: "URL", value: (r: CrawlResult) => r.url },
           {
             header: "内容长度",
-            value: (r: CrawlResult) =>
-              `${(r.raw_content?.length ?? 0).toLocaleString()} 字符`,
+            value: (r: CrawlResult) => `${(r.raw_content?.length ?? 0).toLocaleString()} 字符`,
             align: "right",
           },
         ];

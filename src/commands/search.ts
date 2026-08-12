@@ -141,12 +141,8 @@ export const searchCommands = defineCommands({
         include_answer: args.include_answer,
         include_raw_content: args.include_raw_content,
         include_images: args.include_images,
-        ...(args.include_domains?.length
-          ? { include_domains: args.include_domains }
-          : {}),
-        ...(args.exclude_domains?.length
-          ? { exclude_domains: args.exclude_domains }
-          : {}),
+        ...(args.include_domains?.length ? { include_domains: args.include_domains } : {}),
+        ...(args.exclude_domains?.length ? { exclude_domains: args.exclude_domains } : {}),
         ...(args.country ? { country: args.country } : {}),
       });
 
@@ -162,9 +158,7 @@ export const searchCommands = defineCommands({
             url: r.url,
             content: r.content,
             ...(r.score !== undefined ? { score: r.score } : {}),
-            ...(args.include_raw_content && r.raw_content
-              ? { raw_content: r.raw_content }
-              : {}),
+            ...(args.include_raw_content && r.raw_content ? { raw_content: r.raw_content } : {}),
           })),
           ...(res.data.images?.length ? { images: res.data.images } : {}),
           response_time: res.data.response_time,
@@ -200,8 +194,7 @@ export const searchCommands = defineCommands({
           { header: "URL", value: (r: SearchResult) => r.url },
           {
             header: "相关度",
-            value: (r: SearchResult) =>
-              r.score !== undefined ? r.score.toFixed(2) : "-",
+            value: (r: SearchResult) => (r.score !== undefined ? r.score.toFixed(2) : "-"),
             align: "right",
           },
         ];

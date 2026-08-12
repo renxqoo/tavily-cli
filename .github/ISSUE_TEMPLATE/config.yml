@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: mailto:wangrenren611@gmail.com
+    about: Found a security issue? Email us instead of opening a public issue.
+  - name: Tavily API docs
+    url: https://docs.tavily.com
+    about: Questions about the upstream Tavily API itself (not this CLI).

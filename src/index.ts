@@ -12,7 +12,7 @@
  *   设置 TAVILY_API_KEY 环境变量，或运行 `tavily auth login` 保存到本地。
  */
 
-import { existsSync, realpathSync } from "node:fs";
+import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { defineCli, runInstallWizard } from "@renxqoo/agent-data-cli";
@@ -21,10 +21,7 @@ import { searchCommands } from "./commands/search.js";
 import { extractCommands } from "./commands/extract.js";
 import { crawlCommands } from "./commands/crawl.js";
 import { mapCommands } from "./commands/map.js";
-import {
-  researchCommands,
-  researchNamespaces,
-} from "./commands/research.js";
+import { researchCommands, researchNamespaces } from "./commands/research.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
