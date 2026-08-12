@@ -103,8 +103,6 @@ export const mapCommands = defineCommands({
         }
       }
 
-      ctx.log.info(`映射: ${args.url}`);
-
       const res = await ctx.post<MapResponse>("/map", {
         url: args.url,
         ...(args.instructions ? { instructions: args.instructions } : {}),

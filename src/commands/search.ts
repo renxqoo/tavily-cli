@@ -128,8 +128,6 @@ export const searchCommands = defineCommands({
         });
       }
 
-      ctx.log.info(`搜索: ${args.query}`);
-
       const res = await ctx.post<SearchResponse>("/search", {
         query: args.query,
         search_depth: args.search_depth,

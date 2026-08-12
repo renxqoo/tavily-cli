@@ -87,8 +87,6 @@ export const extractCommands = defineCommands({
         });
       }
 
-      ctx.log.info(`提取 ${args.urls.length} 个 URL 的内容`);
-
       const res = await ctx.post<ExtractResponse>("/extract", {
         urls: args.urls,
         ...(args.query ? { query: args.query } : {}),

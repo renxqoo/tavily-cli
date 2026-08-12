@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-08-12
+
+### Changed
+
+- Removed per-command `INFO:` log lines from `search` / `extract` / `crawl` / `map` / `research` — stderr is now clean, so `--json` output on stdout is easier to capture.
+- Removed the obsolete `NODE_TLS_REJECT_UNAUTHORIZED` stderr-noise note from the bundled Skill (EN/中文); the code no longer sets that env var.
+
 ## [1.0.2] - 2026-08-12
 
 ### Changed
@@ -46,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - One-shot `tavily install` wizard for CLI + Skill + credential setup.
 - Unified JSON output (`--json`) by default for agent consumption; `auto` detects TTY/CI.
 
-[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/renxqoo/tavily-cli/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/renxqoo/tavily-cli/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/renxqoo/tavily-cli/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/renxqoo/tavily-cli/releases/tag/v1.0.0

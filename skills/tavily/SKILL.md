@@ -141,6 +141,5 @@ tavily research get <request_id> --json
 ## Notes
 
 - `--json` is mandatory for agent calls — it guarantees structured JSON output
-- **stderr noise**: every run prints a Node TLS warning (`NODE_TLS_REJECT_UNAUTHORIZED`) to stderr; it is harmless noise. When saving/parsing output use **stdout only**: do NOT merge stderr with `2>&1` into a file (the warning corrupts the JSON); use `> file` or capture stdout directly
 - `advanced` search/extract depth costs 2 credits (other modes cost 1); use the default depth when cost-sensitive
 - When the site structure is unknown, prefer `map` (cheap discovery) then `extract` the chosen pages — avoid the higher cost of direct `crawl`
