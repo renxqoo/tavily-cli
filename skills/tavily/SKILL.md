@@ -1,9 +1,6 @@
 ---
 name: tavily-cli
-description: Tavily AI search and web content extraction. Use when the user wants to search
-  the web, look up news or financial data, extract page content from a URL,
-  crawl a site, generate a site URL map, or launch a deep research report task.
-  Does not support image search, video search, or local file retrieval.
+description: Tavily AI search and web content extraction. Use when the user wants to search the web, look up news or financial data, extract page content from a URL, crawl a site, generate a site URL map, or launch a deep research report task. Does not support image search, video search, or local file retrieval.
 metadata:
   category: search
 ---

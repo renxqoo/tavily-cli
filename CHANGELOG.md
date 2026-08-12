@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-08-12
+
+### Changed
+
+- Bundled Skill (`skills/tavily/SKILL.md`) description collapsed to a single line (EN/中文) for cleaner frontmatter rendering.
+
 ## [1.0.1] - 2026-08-12
 
 ### Added
@@ -40,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - One-shot `tavily install` wizard for CLI + Skill + credential setup.
 - Unified JSON output (`--json`) by default for agent consumption; `auto` detects TTY/CI.
 
-[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/renxqoo/tavily-cli/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/renxqoo/tavily-cli/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/renxqoo/tavily-cli/releases/tag/v1.0.0
