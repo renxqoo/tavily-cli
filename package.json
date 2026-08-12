@@ -1,6 +1,6 @@
 {
   "name": "@renxqoo/tavily-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tavily AI Search / Extract / Crawl / Map / Research CLI for AI agents",
   "type": "module",
   "license": "MIT",

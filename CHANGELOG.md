@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-08-12
+
 ### Added
 
 - Open-source scaffolding: `LICENSE` (MIT), `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue/PR templates.
@@ -38,5 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - One-shot `tavily install` wizard for CLI + Skill + credential setup.
 - Unified JSON output (`--json`) by default for agent consumption; `auto` detects TTY/CI.
 
-[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/renxqoo/tavily-cli/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/renxqoo/tavily-cli/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/renxqoo/tavily-cli/releases/tag/v1.0.0
