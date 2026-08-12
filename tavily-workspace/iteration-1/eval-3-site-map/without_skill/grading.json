@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "使用了 map 命令发现站点结构，输出包含页面链接列表",
+      "passed": true,
+      "evidence": "无 map 命令，改用 WebFetch 抓取 sitemap.xml + llms.txt 枚举链接，等价达成但承认受限（sitemap 抓取被截断，无法穷举全部链接）"
+    },
+    {
+      "text": "从 map 结果中选取了 1 个页面执行 extract，提取出正文内容",
+      "passed": true,
+      "evidence": "提取 Models overview 页面完整正文（模型对比、定价、上下文窗口），并实际验证 3 个页面可达"
+    },
+    {
+      "text": "探测范围有节制（限制了深度/数量，没有无节制爬取）",
+      "passed": true,
+      "evidence": "手动选取少量页面验证，未穷举，范围有节制"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

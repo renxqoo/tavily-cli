@@ -1,0 +1,25 @@
+{
+  "eval_id": 3,
+  "eval_name": "site-map-and-extract",
+  "prompt": "帮我探测 https://docs.anthropic.com 这个文档站的结构，列出它前 10 个页面链接，再提取其中 1 个页面的内容给我",
+  "assertions": [
+    {
+      "name": "map-discovers-links",
+      "text": "使用了 map 命令发现站点结构，输出包含页面链接列表",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "extract-selected-page",
+      "text": "从 map 结果中选取了 1 个页面执行 extract，提取出正文内容",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "bounded-scope",
+      "text": "探测范围有节制（限制了深度/数量，没有无节制爬取）",
+      "passed": null,
+      "evidence": ""
+    }
+  ]
+}

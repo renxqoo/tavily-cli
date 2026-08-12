@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "如实说明无异步研究任务能力，不编造任务 ID 或假状态流转",
+      "passed": true,
+      "evidence": "summary.md 明确说明\"未实现，也不存在该能力。没有创建异步研究任务并轮询状态的工具；不存在真实的任务 ID，因此未编造任何 ID 或假状态流转\""
+    },
+    {
+      "text": "用能力范围内最接近的方式完成深度研究（多轮搜索+交叉验证）",
+      "passed": true,
+      "evidence": "执行 7 轮 WebSearch，按采用率/工具链/收益量化/挑战治理四角度分轮搜索，每个关键数据点至少核对两个独立来源（如 Anthropic 2026 报告核对 5 处）"
+    },
+    {
+      "text": "报告要点基于真实来源，附引用来源列表",
+      "passed": true,
+      "evidence": "result.md 25 个一级要点、引用 25 组真实来源 URL；对口径差异（DORA bug +9% vs +54%）如实标注"
+    },
+    {
+      "text": "实现了异步任务创建 + 状态轮询的完整流程",
+      "passed": false,
+      "evidence": "无深度研究 API，无法创建异步任务并轮询，只能以多轮搜索替代——这是 skill 独有的增量能力"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

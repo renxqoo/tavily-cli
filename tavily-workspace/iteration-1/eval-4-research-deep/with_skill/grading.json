@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "使用 research 命令创建了异步任务并拿到真实 request_id",
+      "passed": true,
+      "evidence": "`tavily research \"2026 年 AI Agent 在软件开发中的落地实践\" --model mini --no-wait --json` → create.json 返回 ok:true，data.request_id=9f9580ea-ed80-4e5a-96c7-270b95056e78，status=pending，与 references/research.md 的异步创建语义一致"
+    },
+    {
+      "text": "通过 research get 轮询状态机直到 completed",
+      "passed": true,
+      "evidence": "轮询 2 次：第 1 次 in_progress、第 2 次 completed；result.json data.status=completed，符合 SKILL.md 状态机 pending→in_progress→completed/failed"
+    },
+    {
+      "text": "报告 content 为真实内容，核心要点来自返回字段而非编造",
+      "passed": true,
+      "evidence": "result.json data.content 为 3573 字符真实 markdown 报告（含架构/工具链/工作流/采纳率等章节），summary.md 提炼 5 条要点均来自 content"
+    },
+    {
+      "text": "sources 缺失时如实处理，不编造来源列表",
+      "passed": true,
+      "evidence": "响应 data 无 sources 数组、meta.sources_count=0，子代理如实记录\"无结构化来源数组\"，未虚构任何 URL"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

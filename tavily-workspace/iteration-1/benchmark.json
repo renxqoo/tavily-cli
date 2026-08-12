@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "skill_name": "tavily",
+    "timestamp": "2026-08-12T19:55:00+08:00",
+    "evals_run": ["news-search", "search-and-extract", "site-map", "research-deep"],
+    "runs_per_configuration": 1,
+    "iteration2": "research-deep 复测（with_skill only，验证文档修正效果）"
+  },
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": { "mean": 1.0, "stddev": 0.0 },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "without_skill": {
+      "pass_rate": { "mean": 0.83, "stddev": 0.0 },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "delta": {
+      "pass_rate": "+17%",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "四轮评估累计：with_skill 13/13 断言通过（100%）；without_skill 11/13（83%）。前三轮 with_skill 9/9、baseline 8/9（唯一未过为 CLI 参数断言 topic=news）；本轮 research-deep with_skill 4/4、baseline 3/4。",
+    "本轮唯一未过断言是 baseline 的\"异步任务创建+状态轮询\"——通用 LLM 无深度研究 API，只能多轮 WebSearch 模拟，无法创建任务 ID、无法轮询。这是 skill 独有的增量能力，与前三轮的\"效率差\"不同，本轮是\"能力有无\"的差异。",
+    "baseline 首次运行被污染：子代理发现本机全局安装的 tavily 命令并直接使用（走了 CLI + pro 模型），违背无-skill 前提；已标记 INVALID 并重跑干净 baseline（7 轮 WebSearch + 交叉验证，25 要点 25 来源，质量高）。教训：baseline 提示词必须显式禁用被评估工具。",
+    "评估发现 2 个 skill 文档问题（进入微调清单）：(1) research.md 的 completed 响应示例写了 data.sources 数组，实测 data 只有 request_id/status/content/created_at，来源计数在 meta.sources_count（本轮为 0）；(2) CLI 每次运行都会在 stderr 输出 Node TLS 警告（NODE_TLS_REJECT_UNAUTHORIZED=0），agent 用 2>&1 合并重定向会污染 JSON 输出，with_skill 子代理因此保存了损坏的 result.json。",
+    "with_skill 异步流程实测正确：--no-wait 创建（pending+request_id）→ research get 轮询 2 次（in_progress → completed）→ 3573 字符真实报告。与 SKILL.md/references/research.md 的状态机描述一致。",
+    "【iteration-2 复测】修复后 with_skill 5/5 通过：JSON 纯净（stderr 修复生效，只用 stdout 保存）；字段解析正确。关键发现——上一轮'data 无 sources 数组'是过度修正：本次 sources_count=4 时 data.sources 为 4 项数组（url/title/favicon）真实存在；正确行为是 sources_count=0 时该字段可能被省略。research.md 已再次修正为条件化描述。子代理主动指出文档与实测出入并'以实测为准'，证明执行规则有效。"
+  ],
+  "runs": [
+    { "eval_id": 1, "eval_name": "news-search", "configuration": "with_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 1, "eval_name": "news-search", "configuration": "without_skill", "result": { "pass_rate": 0.67, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 2, "eval_name": "search-and-extract", "configuration": "with_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 2, "eval_name": "search-and-extract", "configuration": "without_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 3, "eval_name": "site-map", "configuration": "with_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 3, "eval_name": "site-map", "configuration": "without_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 4, "eval_name": "research-deep", "configuration": "with_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 4, "eval_name": "research-deep", "configuration": "without_skill", "result": { "pass_rate": 0.75, "time_seconds": null, "errors": 0, "tokens": null } },
+    { "eval_id": 5, "eval_name": "research-deep-rerun", "configuration": "with_skill", "result": { "pass_rate": 1.0, "time_seconds": null, "errors": 0, "tokens": null } }
+  ]
+}

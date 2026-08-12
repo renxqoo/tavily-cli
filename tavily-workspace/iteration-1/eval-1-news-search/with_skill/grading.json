@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "搜索使用了 topic=news（新闻类别）参数",
+      "passed": true,
+      "evidence": "执行命令 `tavily search \"OpenAI\" --topic news --time_range week --max_results 5 --json`，命令含 --topic news"
+    },
+    {
+      "text": "搜索使用了 time_range=week（最近一周）时间过滤",
+      "passed": true,
+      "evidence": "命令含 --time_range week，返回 5 条新闻均为近期（Reuters/WSJ/OpenAI 官方等 2026-08 内容）"
+    },
+    {
+      "text": "输出包含至少 3 条真实结果，每条含标题和 URL，无编造",
+      "passed": true,
+      "evidence": "result.json 含 5 条结果（Reuters、WSJ、OpenAI 官方等），每条含 title/url/content/score，URL 均为真实域名"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

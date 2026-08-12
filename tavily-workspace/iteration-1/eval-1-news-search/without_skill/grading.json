@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "搜索使用了 topic=news（新闻类别）参数",
+      "passed": false,
+      "evidence": "无 CLI 参数概念，改用 WebSearch 关键词（\"OpenAI news\" 等）实现等价新闻检索，语义达成但未满足该断言"
+    },
+    {
+      "text": "搜索使用了 time_range=week（最近一周）时间过滤",
+      "passed": true,
+      "evidence": "WebSearch 使用 freshness=d7 实现最近一周过滤，等价达成"
+    },
+    {
+      "text": "输出包含至少 3 条真实结果，每条含标题和 URL，无编造",
+      "passed": true,
+      "evidence": "5 条结果（OpenAI 官方博客 2 条、Inc.、Mashable、财联社），逐条 WebFetch 验证 URL 可达性，NYPost 404 已如实排除"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  }
+}

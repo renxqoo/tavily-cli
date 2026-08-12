@@ -1,0 +1,39 @@
+{
+  "name": "with_skill",
+  "model": "default",
+  "verdict": "PASS",
+  "pass_rate": 1.0,
+  "assertions": [
+    {
+      "id": "async_create",
+      "description": "用 --no-wait 创建异步研究任务并拿到 request_id",
+      "passed": true,
+      "evidence": "create.json: request_id=0bfd738d-73f4-44c1-acb7-1f4a2590948e, status=pending"
+    },
+    {
+      "id": "polling",
+      "description": "轮询 research get 直到任务 completed",
+      "passed": true,
+      "evidence": "轮询 1 次即 completed（mini 模型）；summary.md 轮询记录表"
+    },
+    {
+      "id": "report_content",
+      "description": "报告内容真实，核心要点基于 content 字段提取",
+      "passed": true,
+      "evidence": "5 条要点（应用场景/技术栈/架构/落地路径/效益），content 4666 字符"
+    },
+    {
+      "id": "json_clean",
+      "description": "JSON 输出未被 stderr TLS 警告污染（复测核心断言 1）",
+      "passed": true,
+      "evidence": "create.json 与 result.json 均为合法 JSON；summary 明确记录只用 > 重定向 stdout、未用 2>&1"
+    },
+    {
+      "id": "field_parsing",
+      "description": "按实测字段解析响应，不编造（复测核心断言 2）",
+      "passed": true,
+      "evidence": "正确解析 meta.sources_count=4 与 data.sources 数组并交付 4 条真实来源；主动指出文档与实测出入、以实测为准"
+    }
+  ],
+  "notes": "复测验证：stderr 修复生效（JSON 纯净）；发现上一轮'无 sources 数组'修正为过度修正——实测 data.sources 存在（4 项），sources_count=0 时才省略。子代理按执行规则'以实测为准、不编造'主动纠正文档偏差，说明执行规则有效。"
+}

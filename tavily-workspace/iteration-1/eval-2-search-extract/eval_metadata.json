@@ -1,0 +1,25 @@
+{
+  "eval_id": 2,
+  "eval_name": "search-and-extract",
+  "prompt": "搜索 Rust 异步编程（async/await）的入门教程，找出相关性最高的 3 个页面，然后提取其中第 1 个页面的完整正文，以 markdown 形式给我",
+  "assertions": [
+    {
+      "name": "search-then-extract",
+      "text": "先执行了 search 命令（max_results=3），再从搜索结果中选取 URL 执行 extract，两步完整",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "extract-returns-content",
+      "text": "extract 输出包含提取到的正文内容（raw_content），而非空结果",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "markdown-delivered",
+      "text": "提取结果以 markdown 格式交付给用户",
+      "passed": null,
+      "evidence": ""
+    }
+  ]
+}

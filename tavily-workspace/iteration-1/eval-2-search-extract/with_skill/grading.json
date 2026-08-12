@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "先执行了 search 命令（max_results=3），再从搜索结果中选取 URL 执行 extract，两步完整",
+      "passed": true,
+      "evidence": "先 `tavily search \"Rust async/await programming tutorial\" --max_results 3 --json`（3 条，score 0.877/0.852/0.827），再对第 1 条 URL 执行 `tavily extract ... --format markdown --json`"
+    },
+    {
+      "text": "extract 输出包含提取到的正文内容（raw_content），而非空结果",
+      "passed": true,
+      "evidence": "extract.json 中 raw_content 为 2151 字符真实 markdown 正文（users.rust-lang.org 教程），failed_results 为空"
+    },
+    {
+      "text": "提取结果以 markdown 格式交付给用户",
+      "passed": true,
+      "evidence": "extract 使用 --format markdown，输出为 markdown 正文交付"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

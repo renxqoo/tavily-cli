@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "使用了 map 命令发现站点结构，输出包含页面链接列表",
+      "passed": true,
+      "evidence": "`tavily map https://docs.anthropic.com --max_depth 1 --limit 15 --json` 成功，response_time 3.05s，返回 15 个链接"
+    },
+    {
+      "text": "从 map 结果中选取了 1 个页面执行 extract，提取出正文内容",
+      "passed": true,
+      "evidence": "首选 /docs 页 extract 失败 3 次后如实记录并降级（符合 SKILL.md 错误处理：重试≤3 次后换目标），改用 map 结果中的根页面 `tavily extract https://docs.anthropic.com/ --format markdown --json` 成功"
+    },
+    {
+      "text": "探测范围有节制（限制了深度/数量，没有无节制爬取）",
+      "passed": true,
+      "evidence": "map 使用 --max_depth 1 --limit 15 明确限界"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}

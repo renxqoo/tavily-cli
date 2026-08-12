@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "eval_name": "research-deep",
+  "prompt": "发起一个深度研究任务，研究「2026 年 AI Agent 在软件开发中的落地实践」。请异步执行：先创建研究任务拿到 request_id，然后轮询查询任务状态直到完成，最后给我研究报告的核心要点和引用来源列表",
+  "expected_output": "用 Tavily research 创建异步任务（拿到 request_id），通过 research get 轮询状态机（pending/in_progress/completed）直到完成，返回真实报告要点与 sources，不编造",
+  "focus_areas": [
+    "research 异步任务创建（--no-wait 或默认 wait 的取舍）",
+    "research get 状态机轮询（pending → in_progress → completed/failed）",
+    "报告 content 与 sources 的真实解析",
+    "超时/失败时的如实降级，不编造报告"
+  ]
+}

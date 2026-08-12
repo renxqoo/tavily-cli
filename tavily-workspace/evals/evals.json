@@ -1,0 +1,33 @@
+{
+  "skill_name": "tavily",
+  "evals": [
+    {
+      "id": 1,
+      "name": "news-search",
+      "prompt": "帮我搜索最近一周关于 OpenAI 的新闻，给我 5 条结果，每条列出标题和 URL",
+      "expected_output": "调用 Tavily 新闻搜索（topic=news, time_range=week），返回 5 条带标题和 URL 的结构化结果，不编造",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "search-and-extract",
+      "prompt": "搜索 Rust 异步编程（async/await）的入门教程，找出相关性最高的 3 个页面，然后提取其中第 1 个页面的完整正文，以 markdown 形式给我",
+      "expected_output": "先执行 Tavily 搜索（max_results=3），再对第一条结果的 URL 执行 extract 提取全文（markdown），两步都成功",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "site-map-and-extract",
+      "prompt": "帮我探测 https://docs.anthropic.com 这个文档站的结构，列出它前 10 个页面链接，再提取其中 1 个页面的内容给我",
+      "expected_output": "用 Tavily map 发现站点结构（限制数量），再对选中页面执行 extract 提取内容",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "research-deep",
+      "prompt": "发起一个深度研究任务，研究「2026 年 AI Agent 在软件开发中的落地实践」。请异步执行：先创建研究任务拿到 request_id，然后轮询查询任务状态直到完成，最后给我研究报告的核心要点和引用来源列表",
+      "expected_output": "用 Tavily research 创建异步任务（拿到 request_id），通过 research get 轮询状态机（pending/in_progress/completed）直到完成，返回真实报告要点与 sources，不编造",
+      "files": []
+    }
+  ]
+}

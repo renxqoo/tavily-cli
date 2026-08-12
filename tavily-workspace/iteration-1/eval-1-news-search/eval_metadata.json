@@ -1,0 +1,25 @@
+{
+  "eval_id": 1,
+  "eval_name": "news-search",
+  "prompt": "帮我搜索最近一周关于 OpenAI 的新闻，给我 5 条结果，每条列出标题和 URL",
+  "assertions": [
+    {
+      "name": "uses-news-topic",
+      "text": "搜索使用了 topic=news（新闻类别）参数",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "uses-time-range",
+      "text": "搜索使用了 time_range=week（最近一周）时间过滤",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "name": "returns-real-results",
+      "text": "输出包含至少 3 条真实结果，每条含标题和 URL，无编造",
+      "passed": null,
+      "evidence": ""
+    }
+  ]
+}

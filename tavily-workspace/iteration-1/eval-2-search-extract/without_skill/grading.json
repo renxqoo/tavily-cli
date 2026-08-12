@@ -1,0 +1,25 @@
+{
+  "expectations": [
+    {
+      "text": "先执行了 search 命令（max_results=3），再从搜索结果中选取 URL 执行 extract，两步完整",
+      "passed": true,
+      "evidence": "用 WebSearch 选出 3 个相关页面（whalelogic.io、Rust 官方 Async Book 译版、egpivo），再用 WebFetch 提取第 1 个页面完整正文，流程等价达成"
+    },
+    {
+      "text": "extract 输出包含提取到的正文内容（raw_content），而非空结果",
+      "passed": true,
+      "evidence": "result.md 含 whalelogic.io 页面完整正文（futures、async/await、Tokio 任务、I/O、错误处理、综合示例全部章节与代码）"
+    },
+    {
+      "text": "提取结果以 markdown 格式交付给用户",
+      "passed": true,
+      "evidence": "结果整理为 markdown 保存交付"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  }
+}
