@@ -9,15 +9,10 @@
  * `research get <request_id>` 可查询已创建任务。
  */
 
-import {
-  defineCommandFromArgs,
-  defineCommands,
-  errs,
-} from "@renxqoo/agent-data-cli";
+import { defineCommandFromArgs, defineCommands, errs } from "@renxqoo/agent-data-cli";
 import type { ResearchResult, ResearchSource, ResearchTask } from "../types.js";
 
 const POLL_INTERVAL_MS = 3_000;
-const DEFAULT_WAIT_TIMEOUT_MS = 300_000;
 
 /** research 命令返回的数据结构（各分支统一） */
 interface ResearchRunData {
@@ -159,12 +154,8 @@ export const researchCommands = defineCommands({
         model: args.model,
         citation_format: args.citation_format,
         ...(args.output_length ? { output_length: args.output_length } : {}),
-        ...(args.include_domains?.length
-          ? { include_domains: args.include_domains }
-          : {}),
-        ...(args.exclude_domains?.length
-          ? { exclude_domains: args.exclude_domains }
-          : {}),
+        ...(args.include_domains?.length ? { include_domains: args.include_domains } : {}),
+        ...(args.exclude_domains?.length ? { exclude_domains: args.exclude_domains } : {}),
       });
 
       if (!created.data.request_id) {

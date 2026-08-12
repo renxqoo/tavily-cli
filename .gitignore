@@ -8,5 +8,11 @@ dist/
 *.log
 .DS_Store
 
+# 测试覆盖率
+coverage/
+
+# husky 内部生成的文件（hook 脚本本身需提交）
+.husky/_/
+
 # 本地凭证
 .tavily-cli/

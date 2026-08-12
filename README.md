@@ -1,8 +1,32 @@
 # Tavily CLI
 
-**English | [简体中文](https://unpkg.com/@renxqoo/tavily-cli@latest/README.zh-CN.md)**
+**English | [简体中文](./README.zh-CN.md)**
 
-A Tavily AI search & web-content extraction CLI, purpose-built for AI agents.
+[![npm version](https://img.shields.io/npm/v/@renxqoo/tavily-cli?color=blue&logo=npm)](https://www.npmjs.com/package/@renxqoo/tavily-cli)
+[![npm license](https://img.shields.io/npm/l/@renxqoo/tavily-cli?color=blue)](./LICENSE)
+[![node](https://img.shields.io/node/v/@renxqoo/tavily-cli?color=blue&logo=node.js)](https://nodejs.org)
+[![CI](https://github.com/renxqoo/tavily-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/renxqoo/tavily-cli/actions/workflows/ci.yml)
+[![bundle size](https://img.shields.io/badge/bundle-~24KB-zero--deps-success)](#tech-stack)
+
+A Tavily AI **search & web-content extraction** CLI, purpose-built for AI agents. Search the web, extract pages, crawl whole sites, map URLs, and launch deep-research tasks — all with unified JSON output that agents can consume directly.
+
+- 🔎 **Search** · 📄 **Extract** · 🕸️ **Crawl** · 🗺️ **Map** · 🔬 **Research**
+- 🤖 Ships a bundled **Skill** so AI agents can self-discover and call the right command
+- 🔑 API-key auth via env var **or** a local credential store (the key is never echoed)
+- 📦 **Zero runtime dependencies** — fully bundled & minified into a single ~24 KB file
+
+## Table of contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Authentication](#authentication)
+- [Common commands](#common-commands)
+- [Output format](#output-format)
+- [Command reference](#command-reference)
+- [Development](#development)
+- [Tech stack](#tech-stack)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -16,7 +40,7 @@ A Tavily AI search & web-content extraction CLI, purpose-built for AI agents.
 
 ## Installation
 
-Requires Node.js >= 20.
+Requires **Node.js >= 20**.
 
 ```bash
 npm install -g @renxqoo/tavily-cli
@@ -36,16 +60,6 @@ tavily skills list --json
 ```
 
 > **WorkBuddy users**: the one-shot install syncs skills to generic AI tool directories (`~/.agents`, Claude/Codex/Cursor, etc.), **not** `~/.workbuddy/skills/`. Copy the skill manually if you use WorkBuddy (see the "Installation" section in `skills/tavily/SKILL.md`).
-
-## Publishing to npm
-
-```bash
-npm login           # required before first publish (needs an npm account)
-npm version patch   # bump version as needed
-npm publish         # prepack runs the tsup build automatically; publishes dist/ + skills/
-```
-
-> The package name `@renxqoo/tavily-cli` is reserved; `npm publish` ships only `dist/` and `skills/` (see the `files` field in package.json) — no source code or dependencies.
 
 ## Authentication
 
@@ -151,19 +165,46 @@ Always pass `--json` when calling from an agent or script. Success results go to
 | `tavily skills list` | List bundled Skills |
 | `tavily skills sync` | Sync Skills to AI tool directories |
 
+For the full set of flags per command, run `tavily <command> --help`, or see the bundled [`skills/tavily/references/`](./skills/tavily/references).
+
 ## Development
 
+This project uses [pnpm](https://pnpm.io) (see `pnpm-lock.yaml`). Node.js >= 20 required.
+
 ```bash
-npm install        # install dependencies
-npm run typecheck  # type check
-npm run build      # tsup bundle: single-file dist/index.js (minified, fully bundled, ~25KB)
-npm publish        # publish to npm (prepack runs the build automatically)
+pnpm install          # install dependencies
+pnpm run lint         # oxlint — linter
+pnpm run format       # oxfmt — formatter (write)
+pnpm run format:check # oxfmt — check formatting without writing
+pnpm run typecheck    # tsc --noEmit — type check
+pnpm run test         # vitest — runs smoke tests (builds dist/ first via pretest)
+pnpm run build        # tsup bundle: single-file dist/index.js (minified, fully bundled, ~24KB)
 ```
 
-> Built with [tsup](https://tsup.gg) (an esbuild wrapper): the framework dependency is fully bundled into `dist/index.js` and minified, so the published package has **zero runtime dependencies** (`dependencies` is empty) — users install without pulling a dependency tree. See `tsup.config.ts`.
+Run the locally built CLI without installing globally:
+
+```bash
+node ./dist/index.js --help
+TAVILY_API_KEY=tvly-xxxx node ./dist/index.js search "hello" --json
+```
+
+Git hooks (via [husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged)) run automatically:
+
+- **pre-commit** — lints & formats staged files (`oxlint --fix` + `oxfmt --write`)
+- **pre-push** — runs `typecheck` + `test`
 
 ## Tech stack
 
 - [Tavily AI API](https://docs.tavily.com) — search & extraction backend
 - [@renxqoo/agent-data-cli](https://www.npmjs.com/package/@renxqoo/agent-data-cli) — Agent-native CLI framework (with install wizard, inlined at build time)
 - [tsup](https://tsup.gg) — build tool (esbuild wrapper, minify + tree-shaking)
+
+## Contributing
+
+Contributions are welcome! `main` is a protected branch — all changes land via pull request.
+
+See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for setup, project structure, and the release process, and the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## License
+
+[MIT](./LICENSE) © [renxqoo](https://github.com/renxqoo)

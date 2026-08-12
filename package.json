@@ -1,27 +1,74 @@
 {
   "name": "@renxqoo/tavily-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tavily AI Search / Extract / Crawl / Map / Research CLI for AI agents",
   "type": "module",
+  "license": "MIT",
+  "author": "renxqoo <wangrenren611@gmail.com>",
+  "homepage": "https://github.com/renxqoo/tavily-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renxqoo/tavily-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/renxqoo/tavily-cli/issues"
+  },
+  "keywords": [
+    "tavily",
+    "cli",
+    "ai-search",
+    "web-search",
+    "web-extraction",
+    "crawl",
+    "deep-research",
+    "ai-agent",
+    "agent",
+    "developer-tools"
+  ],
   "bin": {
     "tavily": "./dist/index.js"
   },
   "files": [
     "dist",
-    "skills"
+    "skills",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=20"
   },
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "prepack": "npm run build"
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt src tests tsup.config.ts vitest.config.ts",
+    "format:check": "oxfmt --check src tests tsup.config.ts vitest.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "pretest": "npm run build",
+    "prepack": "npm run build",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,cjs,jsx}": [
+      "oxlint --fix",
+      "oxfmt --write"
+    ]
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
     "tsup": "^8.5.1",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "@renxqoo/agent-data-cli": "^1.2.0"

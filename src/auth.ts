@@ -129,8 +129,7 @@ export function createTavilyAuth(): Plugin {
 
       // 包装 store 成 ctx.credentials (业务命令运行时可用)
       (ctx as { credentials: typeof ctx.credentials }).credentials = {
-        get: async (ns) =>
-          (await store.loadCredentials(ns)) as Record<string, string> | null,
+        get: async (ns) => (await store.loadCredentials(ns)) as Record<string, string> | null,
         save: (ns, d) => store.saveCredentials(ns, d),
         clear: (ns) => store.clearCredentials(ns),
       };

@@ -5,11 +5,7 @@
  * 只发现 URL，不提取内容（提取请用 extract 或 crawl）。
  */
 
-import {
-  defineCommandFromArgs,
-  defineCommands,
-  errs,
-} from "@renxqoo/agent-data-cli";
+import { defineCommandFromArgs, defineCommands, errs } from "@renxqoo/agent-data-cli";
 import type { MapResponse } from "../types.js";
 
 export const mapCommands = defineCommands({
@@ -116,15 +112,9 @@ export const mapCommands = defineCommands({
         max_breadth: args.max_breadth,
         limit: args.limit,
         ...(args.select_paths?.length ? { select_paths: args.select_paths } : {}),
-        ...(args.select_domains?.length
-          ? { select_domains: args.select_domains }
-          : {}),
-        ...(args.exclude_paths?.length
-          ? { exclude_paths: args.exclude_paths }
-          : {}),
-        ...(args.exclude_domains?.length
-          ? { exclude_domains: args.exclude_domains }
-          : {}),
+        ...(args.select_domains?.length ? { select_domains: args.select_domains } : {}),
+        ...(args.exclude_paths?.length ? { exclude_paths: args.exclude_paths } : {}),
+        ...(args.exclude_domains?.length ? { exclude_domains: args.exclude_domains } : {}),
         allow_external: args.allow_external,
         ...(args.timeout ? { timeout: args.timeout } : {}),
         include_usage: args.include_usage,

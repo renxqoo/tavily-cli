@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc-assets/npm/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "import", "unicorn"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "es2024": true,
+    "node": true
+  },
+  "rules": {
+    "no-console": "off"
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    "coverage/**",
+    "tavily-workspace/**",
+    "tavily-zh/**"
+  ]
+}
